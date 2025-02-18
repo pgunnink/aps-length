@@ -439,7 +439,7 @@ def count_figures_words(detex_lines, tex_lines, opts):
         for key in list(tex_vars.keys()):
             if key in filename:
                 filename = filename.replace(key, tex_vars[key])
-
+        filename = opts.graphicspath+filename
         for ext in ['', '.pdf', '.eps', '.png']:
             if len(glob.glob(filename+ext)) == 1:
                 break
@@ -574,7 +574,7 @@ parser.add_option('-j', '--journal', metavar='PRL', default='PRL',
                   help='Journal abbreviation (e.g. PRL, PRB-RC)')
 parser.add_option('-l', '--latex', default='pdflatex',
                   help='Latex executable. Default is "pdflatex".')
-
+parser.add_option('-g', '--graphicspath', default='', help='Path to be prepended to the figures path.')
 
 opts, args = parser.parse_args()
 
